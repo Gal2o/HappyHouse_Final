@@ -1,0 +1,213 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins:200,200i,300,300i,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins:200,200i,300,300i,400,500,600,700,800,900&display=swap");
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  padding: 2px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Poppins", sans-serif;
+  color: #234262;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #7d84ab;
+  margin-bottom: 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+hr {
+	width: 400px;
+	margin-left: 0px;
+}
+
+.img {
+  max-width: 100%;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+*::placeholder {
+  color: #cccccc;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.box{
+	background-color: #272729;
+	padding-top:50px;
+	padding-bottom:50px;
+	margin-bottom: 50px;
+}
+.container{
+	background-color: white;
+	padding-bottom:50px;
+}
+
+/* header  */
+.header-area {
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 0;
+  z-index: 9;
+}
+
+.header-area .header-top_area {
+  padding: 11px 35px;
+  background: #272729;
+  text-align:right;
+}
+.header-area .header-top_area a {
+  margin-right: 10px;
+  color : white;
+}
+
+.header-area .main-header-area {
+  background: #fff;
+  padding: 0 35px;
+}
+
+.header-area .main-header-area .main-menu {
+  text-align: right;
+}
+
+.header-area .main-header-area .main-menu ul li {
+  display: inline-block;
+  position: relative;
+  margin: 0 10px;
+}
+
+.header-area .main-header-area .main-menu ul li a {
+  color: #32364a;
+  font-size: 15px;
+  text-transform: capitalize;
+  font-weight: 600;
+  display: inline-block;
+  padding: 39px 0px 39px 0px;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  text-transform: capitalize;
+}
+
+.main-menu ul li .dropdown .dropdown-menu .dropdown-item{
+	text-align:center;
+	padding :10px 0px 10px 0px;
+}
+
+.logo {
+	height: 10px;
+}
+
+/* main-area */
+.main-area .main-img {
+  height: 270px;
+  background-color : #272729;
+}
+
+.main-area h1 {
+	padding-top : 100px;
+	text-align: center;
+	color: white;
+}
+
+/*location select*/
+.location-select {
+  padding-top: 20px;
+  height: 80px;
+  background-color : #3c3c3c;
+  text-align: center;
+}
+
+.location-select select {
+    height: calc(2.25rem + 2px);
+    width: auto;
+    padding: .375rem .75rem;
+    background-color: #5b5b5b;
+    border-radius: .25rem;
+    color: #ffffff;
+}
+
+.aptList-area {
+	padding-top: 60px;
+}
+
+.map {
+	width: 100%;
+	height: 500px;
+	margin-right:0px;
+}
+
+/* Aptinfo */
+.container h3{
+	margin-bottom:50px;
+}
+
+.container .apt-inline{
+	  display: inline-block;
+}
+
+.container .info img{
+	border : 3px solid gray;
+	width:450px;
+	height:360px; 
+	float:right;
+	margin-right:50px;
+	margin-bottom:30px;
+}
+
+.container .apt-table .table{
+	width:500px;
+	text-align:center;
+}
+
+/* NoticeView.jps */
+.table-notice1{
+	width:900px;
+	font-size:13px;
+}
+
+.table-notice2{
+	width :900px;
+	border:2px solid #e6e6e6;
+	text-align:center;
+}
+
+.table-notice2 tr{
+	border:2px solid #e6e6e6;
+}
+
+.table-notice2 td{
+	border:2px solid #e6e6e6;
+}
+
+/* Sitemap.jps */
+
+.table-site{
+	width:200px;
+	height:300px;
+	text-align:center;
+	 display: inline-block;
+}
+
+/*footer*/
+.footer-area {
+	padding: 35px;
+	width: 100%;
+}
