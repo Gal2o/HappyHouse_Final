@@ -1,5 +1,8 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,9 +41,15 @@ public class NoticeController {
 	}
 	
 	@GetMapping("list")
-	public String list(@RequestParam(value="key", required=false, defaultValue="") String key, @RequestParam(value="word", required=false, defaultValue="") String word, Model model) {
+	public String list(@RequestParam(value="key", required=false, defaultValue="") String key, 
+					   @RequestParam(value="word", required=false, defaultValue="") String word,
+					   @RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
+					   Model model) {
+		int sizePerPage = 5;
 		try {
-			model.addAttribute("notices", service.listNotice(key, word));
+			
+			model.addAttribute("notices", service.listNotice(currentPage, sizePerPage, key, word));
+			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word));
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "글목록을 얻어오는 중 문제가 발생했습니다.");

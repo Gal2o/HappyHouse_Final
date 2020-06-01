@@ -1,7 +1,10 @@
 package com.ssafy.happyhouse.model.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,9 +19,14 @@ public class NoticeRepoImpl implements NoticeRepo {
 	
 
 	@Override
-	public List<NoticeDto> listNotice(String key, String word) throws Exception {
-		System.out.println("key: "+key+", "+"word: "+word);
-		return sqlSession.selectList("notice.selectAll");
+	public List<NoticeDto> listNotice(int currentPage, int sizePerPage,String key, String word) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("key", key);
+		map.put("word", word);
+		
+		RowBounds bounds = new RowBounds((currentPage-1)*sizePerPage, sizePerPage);
+		
+		return sqlSession.selectList("notice.selectAll", map, bounds);
 	}
 
 	@Override
@@ -45,5 +53,14 @@ public class NoticeRepoImpl implements NoticeRepo {
 		sqlSession.delete("notice.delete", no);
 		
 		return;
+	}
+
+	@Override
+	public int getTotalCount(String key, String word) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("key", key);
+		map.put("word", word);
+		
+		return sqlSession.selectOne("notice.count", map);
 	}
 }
