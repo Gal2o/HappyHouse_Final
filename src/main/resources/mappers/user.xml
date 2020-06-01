@@ -25,7 +25,7 @@
 	<!-- 회정 수정 -->
 	<update id="update">
 		update user
-		set password=#{password}, name=#{name}, address=#{address}, phone=#{phone}
+		set password=#{password},password=#{passcheck}, address=#{address}, phone=#{phone}
 		where id=#{id}	
 	</update>
 	<!-- 회정 삭제 -->

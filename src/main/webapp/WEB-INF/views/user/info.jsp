@@ -31,11 +31,11 @@
 			}
 			
 			function revise(){
-				document.location.href = "${root}/User.do?act=mvrevise";
+				document.location.href = "${root}/User.do/revise";
 			}
 			
 			function del(){
-				document.location.href = "${root}/User.do?act=mvdel";
+				document.location.href = "${root}/User.do/delete";
 			}
 			</script>
 </head>

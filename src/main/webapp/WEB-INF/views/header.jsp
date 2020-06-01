@@ -14,7 +14,7 @@
 		<c:if test="${userinfo != null}">
 			<p>
 				<a href="${root}/User.do/logout">Logout</a> 
-				<a href="${root}/User.do?act=mvinfo">My Info</a>
+				<a href="${root}/User.do/info">My Info</a>
 			</p>
 		</c:if>
 	</div>

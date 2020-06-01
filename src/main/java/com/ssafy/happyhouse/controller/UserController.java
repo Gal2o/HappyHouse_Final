@@ -73,13 +73,23 @@ public class UserController {
 		return "/index";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("revise")
+	public String revisePage() {
+		return "/user/revise";
+	}
+	@PostMapping("revise")
+	public String update(UserDto userDto, Model model) {
+		try {
+			service.update(userDto);
+			model.addAttribute("msg", "회원정보수정에 성공하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원정보수정 중 문제가 발생했습니다.");
+			return "error/error";
+		}
+		
+		return "/index";
+	}
 	
 	@GetMapping("delete")
 	public String delete(String id, Model model) {
@@ -92,7 +102,7 @@ public class UserController {
 			return "error/error";
 		}
 		
-		return "";
+		return "/index";
 	}
 	
 }
