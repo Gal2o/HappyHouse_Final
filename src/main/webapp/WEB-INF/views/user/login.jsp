@@ -30,7 +30,7 @@ function login() {
 		alert("비밀번호 입력!!!");
 		return;
 	} else {
-		document.getElementById("loginform").action = "${root}/User.do";
+		document.getElementById("loginform").action = "${root}/User.do/login";
 		document.getElementById("loginform").submit();
 	}
 }
@@ -52,7 +52,6 @@ function mvfindpw(){
 	<div class="container" align="center">
 		<div class="col-lg-6" align="center">
 			<form id="loginform" method="post" action="">
-			<input type ="hidden" name="act" value="login">
 				<div class="form-group" align="left">
 					<label for="">아이디</label>
 					<input type="text" class="form-control" id="id" name="id" placeholder="" value="${svid}">

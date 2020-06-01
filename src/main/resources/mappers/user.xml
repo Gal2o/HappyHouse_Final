@@ -7,11 +7,19 @@
 	<!-- 회원 목록 -->
 	<select id="selectAll" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.UserDto">
 		select id, name, address, phone
-		from user		
+		from userinfo		
 	</select>
+	
+	<!-- 로그인 -->
+	<select id="select" resultType="com.ssafy.happyhouse.model.dto.UserDto">
+		select id, name, address, phone
+		from userinfo
+		where id=#{id} and password=#{password}
+	</select>
+	
 	<!-- 회원가입 -->
 	<insert id="insert">
-		insert into user (id, password, name,address,phone)
+		insert into userinfo (id, password, name,address,phone)
 		values (#{id},#{password},#{name},#{address},#{phone})
 	</insert>
 	<!-- 회정 수정 -->

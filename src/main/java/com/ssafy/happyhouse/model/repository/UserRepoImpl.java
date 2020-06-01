@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ssafy.happyhouse.model.dto.UserDto;
 
+@Repository
 public class UserRepoImpl implements UserRepo{
 	
 	@Autowired
@@ -17,8 +19,8 @@ public class UserRepoImpl implements UserRepo{
 		return sqlSession.selectList("user.selectAll");
 	}
 	@Override
-	public UserDto select(String id) throws Exception{
-		return sqlSession.selectOne("user.select",id);
+	public UserDto select(UserDto user) throws Exception{
+		return sqlSession.selectOne("user.select",user);
 	}
 
 	@Override

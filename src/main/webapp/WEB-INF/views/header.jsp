@@ -8,7 +8,7 @@
 		<c:if test="${userinfo == null}">
 			<p>
 			<a href="${root}/User.do?act=mvjoin">Sign Up</a> 
-			<a href="${root}/User.do?act=mvlogin">Login</a>
+			<a href="${root}/User.do/login">Login</a>
 			</p>
 		</c:if>
 		<c:if test="${userinfo != null}">

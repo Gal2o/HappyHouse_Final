@@ -3,11 +3,12 @@ package com.ssafy.happyhouse.model.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.dto.UserDto;
 import com.ssafy.happyhouse.model.repository.UserRepo;
 
-
+@Service
 public class UserServiceImpl implements UserService{
 	@Autowired
 	UserRepo repo;
@@ -18,8 +19,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDto select(String id) throws Exception {
-		return repo.select(id);
+	public UserDto select(UserDto user) throws Exception {
+		return repo.select(user);
 	}
 
 	@Override
