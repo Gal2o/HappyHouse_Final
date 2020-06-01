@@ -49,7 +49,7 @@
 		  		</tr>
 		  	</table>
 		  		<table class="table" style="width:900px">
-		  		<c:if test="${userinfo.id != 'admin'}">
+		  		<c:if test="${userinfo.id == 'admin'}">
 					<tr class="table-light">
 						<td style="text-align:right">
 							<a href="${root}/notice.do/modify?no=${notice.no}" class="btn btn-outline-dark">수정</a>

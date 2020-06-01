@@ -41,13 +41,13 @@ $(document).ready(function() {
 			alert("주소 입력!!!");
 			return;
 		} else {
-			$("#memberform").attr("action", "${root}/User.do?act=join").submit();
+			$("#memberform").attr("action", "${root}/User.do/join").submit();
 		}
 	});
 });
 
 function back(){
-	document.location.href = "${root}/index.jsp";
+	document.location.href = "${root}/";
 }
 </script>
 </head>
@@ -59,7 +59,6 @@ function back(){
 	<div class="container" align="center">
 		<div class="col-lg-6" align="center">
 			<form id="memberform" method="post" action="">
-			<input type="hidden" name="act" id="act" value="">
 				<div class="form-group" align="left">
 					<label for="name">이름</label>
 					<input type="text" class="form-control" id="name" name="name" placeholder="">

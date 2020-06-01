@@ -38,7 +38,7 @@
 		<h3>공지사항</h3>
 		<table class="table table-borderless">
 			<tr>
-				<c:if test="${userinfo.id!='admin'}">
+				<c:if test="${userinfo.id=='admin'}">
 					<td align="right"><button type="button" class="btn btn-link" onclick='location.href="${root}/notice.do/write"'>글작성</button></td>
 				</c:if>
 			</tr>

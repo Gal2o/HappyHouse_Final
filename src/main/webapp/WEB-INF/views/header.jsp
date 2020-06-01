@@ -7,13 +7,13 @@
 	<div class="header-top_area">
 		<c:if test="${userinfo == null}">
 			<p>
-			<a href="${root}/User.do?act=mvjoin">Sign Up</a> 
+			<a href="${root}/User.do/join">Sign Up</a> 
 			<a href="${root}/User.do/login">Login</a>
 			</p>
 		</c:if>
 		<c:if test="${userinfo != null}">
 			<p>
-				<a href="${root}/User.do?act=logout">Logout</a> 
+				<a href="${root}/User.do/logout">Logout</a> 
 				<a href="${root}/User.do?act=mvinfo">My Info</a>
 			</p>
 		</c:if>

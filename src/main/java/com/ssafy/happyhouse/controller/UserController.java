@@ -20,12 +20,12 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/login")
+	@GetMapping("login")
 	public String loginPage() {
 		return "user/login";
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("login")
 	public String login(UserDto userDto, Model model, HttpServletRequest request) {
 		try {
 			UserDto user = service.select(userDto);
@@ -34,6 +34,7 @@ public class UserController {
 				session.setAttribute("userinfo", user);
 			} else {
 				model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인 해 주세요.");
+				return "error/error";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,6 +44,38 @@ public class UserController {
 		
 		return "/index";
 	}
+	
+	@GetMapping("logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("userinfo");
+		
+		return "/index";
+	}
+	
+	@GetMapping("join")
+	public String joinPage() {
+		return "/user/join";
+	}
+	
+	@PostMapping("join")
+	public String join(UserDto userDto, String tel1, String tel2, String tel3, Model model) {
+		userDto.setPhone(tel1+"-"+tel2+"-"+tel3);
+		try {
+			service.insert(userDto);
+			model.addAttribute("msg", "회원가입에 성공하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원가입 중 문제가 발생했습니다.");
+			return "error/error";
+		}
+		
+		return "/index";
+	}
+	
+	
+	
+	
 	
 	
 	
