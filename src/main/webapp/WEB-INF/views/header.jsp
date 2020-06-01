@@ -21,7 +21,7 @@
 	<div class="main-header-area">
 		<div class="header-left">
 			<div class="logo">
-				<a href="${root}/index.jsp">
+				<a href="${root}/">
 				<img src="${root}/img/logo.png" alt="" style="width:100px;">
 				</a>
 			</div>
@@ -30,7 +30,7 @@
 			<div class="main-menu">
 				<nav>
 					<ul id="navigation">
-						<li><a href="${root}/main.do?act=list&pg=1&key=&word=">공지사항</a></li>
+						<li><a href="${root}/notice.do/list">공지사항</a></li>
 						<li><a href="${root}/sitemap.jsp">사이트맵</a></li>
 						<li><a href="${root}/apt/AptList.jsp">거래정보</a></li>
 						<c:if test="${userinfo != null}">

@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <title>공지사항</title>
 </head>
 <body>
@@ -49,16 +49,20 @@
 		  		</tr>
 		  	</table>
 		  		<table class="table" style="width:900px">
-		  		<c:if test="${userinfo.id == 'admin'}">
+		  		<c:if test="${userinfo.id != 'admin'}">
 					<tr class="table-light">
 						<td style="text-align:right">
-							<a href="${root}/main.do?act=mvmodify&no=${notice.no}" class="btn btn-outline-dark">수정</a>
-							<a href="${root}/main.do?act=delete&no=${notice.no}" class="btn btn-outline-dark">삭제</a>
+							<a href="${root}/notice.do/modify?no=${notice.no}" class="btn btn-outline-dark">수정</a>
+							<a href="${root}/notice.do/delete?no=${notice.no}" class="btn btn-outline-dark">삭제</a>
 						</td>
 					</tr>
 				</c:if>
 		  	</table>
 		  </div>
 	  </div>
+	  
+	<footer>
+		<%@ include file = "../footer.jsp" %>	
+	</footer>
 </body>
 </html>

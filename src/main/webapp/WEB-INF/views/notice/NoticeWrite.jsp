@@ -22,7 +22,7 @@
 		alert("내용을 입력해주세요.");
 		return;
 	} else {
-	  	document.getElementById("writeform").action = "${root}/main.do";
+	  	document.getElementById("writeform").action = "${root}/notice.do/write";
 	  	document.getElementById("writeform").submit();
 	}
   }
@@ -36,8 +36,7 @@
 		<div class="container" align="center">
 			<h3>글을 등록해주세요.</h3> 
 			<div class="col-lg-6" align="center">
-			<form id="writeform" method="post" action="">
-				<input type="hidden" name="act" id="act" value="write">
+			<form id="writeform" method="post">
 				<div class="form-group">
 					<label for="subject">제목</label>
 					<input type="text" class="form-control" id="subject" name="subject">
