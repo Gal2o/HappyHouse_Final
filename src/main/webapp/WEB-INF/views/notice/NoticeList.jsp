@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	function pageMove(pg) { 
 		document.getElementById("pg").value=pg;
-		document.getElementById("pageform").action = "${root}/main.do";
+		document.getElementById("pageform").action = "${root}/notice.do/list";
 		document.getElementById("pageform").submit();
 	}
 </script>
@@ -26,19 +26,26 @@
 		<%@ include file = "../header.jsp" %>
 	</header>
 	
+	<form name="pageform" id="pageform" method="GET" action="">
+		<input type="hidden" name="act" id="act" value="list">
+		<input type="hidden" name="pg" id="pg" value="">
+		<input type="hidden" name="key" id="key" value="${key}">
+		<input type="hidden" name="word" id="word" value="${word}">
+	</form>
+	
 	<div class="box">
 	<div class="container" align="center">
-		<h3>공지사항</h3> 
+		<h3>공지사항</h3>
 		<table class="table table-borderless">
 			<tr>
 				<c:if test="${userinfo.id!='admin'}">
-					<td align="right"><button type="button" class="btn btn-link" onclick='location.href="${root}/notice.do/write"'>글 등록</button></td>
+					<td align="right"><button type="button" class="btn btn-link" onclick='location.href="${root}/notice.do/write"'>글작성</button></td>
 				</c:if>
 			</tr>
 		</table>
 		
 		<form id="searchform" method="get" class="form-inline" action="${root}/notice.do/list">
-			<!-- <input type="hidden" name="pg" id="pg" value="1"> -->
+			<input type="hidden" name="pg" id="pg" value="1">
 			<table class="table table-borderless">
 				<tr>
 	  				<td align="right">
@@ -47,7 +54,7 @@
 							<option value="subject">제목</option>
 							<option value="content">내용</option>
 						</select>
-						<input type="text" class="form-control" placeholder="검색어 입력." name="word" id="word">
+						<input type="text" class="form-control" placeholder="검색어 입력" name="word" id="word">
 						<button type="submit" class="btn btn-dark">검색</button>
 					</td>
 	  			</tr>
