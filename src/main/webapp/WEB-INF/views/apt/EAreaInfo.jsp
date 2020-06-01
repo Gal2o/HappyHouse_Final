@@ -16,7 +16,7 @@
 </head>
 <script type="text/javascript">
 		function searchArea() {
-			document.getElementById("searchform").action = "${root}/Apt.do";
+			document.getElementById("searchform").action = "${root}/Apt.do/earea";
 			document.getElementById("searchform").submit();
 		}
 		function pageMove(pg) { 

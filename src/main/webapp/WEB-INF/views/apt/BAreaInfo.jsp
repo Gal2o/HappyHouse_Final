@@ -16,7 +16,7 @@
 </head>
 <script type="text/javascript">
 		function searchArea() {
-			document.getElementById("searchform").action = "${root}/Apt.do";
+			document.getElementById("searchform").action = "${root}/Apt.do/barea";
 			document.getElementById("searchform").submit();
 		}
 		function pageMove(pg) { 
@@ -37,7 +37,7 @@
 	<div class = "box">
 		<div class="container" align="center">
 			<h3>상권 정보</h3>
-			<form id="searchform" method="get" action="">
+			<form id="searchform" method="get" action="${root}/Apt.do/barea">
 				<input type="hidden" name="act" id="act" value="barea">
 				<input type="hidden" name="pg" id="pg" value="1">
 				<table class="table table-borderless">

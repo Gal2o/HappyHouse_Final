@@ -31,11 +31,11 @@
 				<nav>
 					<ul id="navigation">
 						<li><a href="${root}/notice.do/list">공지사항</a></li>
-						<li><a href="${root}/sitemap.jsp">사이트맵</a></li>
-						<li><a href="${root}/apt/AptList.jsp">거래정보</a></li>
+						<li><a href="${root}/Apt.do/site">사이트맵</a></li>
+						<li><a href="${root}/Apt.do/list">거래정보</a></li>
 						<c:if test="${userinfo != null}">
-							<li><a href="${root}/Apt.do?act=barea&pg=1">상권 정보</a></li>
-							<li><a href="${root}/Apt.do?act=earea&pg=1">대기오염 정보</a></li>
+							<li><a href="${root}/Apt.do/barea">상권 정보</a></li>
+							<li><a href="${root}/Apt.do/earea">대기오염 정보</a></li>
 							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 설정</a></li>
 							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 둘러보기</a></li>
 						</c:if>

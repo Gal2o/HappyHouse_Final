@@ -14,7 +14,7 @@
 		<title>거래정보</title>
 		<script type="text/javascript">
 			function searchAll(){
-				location.href="${root}/Apt.do?act=list&aptdeal=1&aptdeal=2&aptdeal=3&aptdeal=4&pg=1&key=all&word=";
+				location.href="${root}/Apt.do/list";
 			}
 			function searchApt() {
 				document.getElementById("searchform").action = "${root}/Apt.do";
@@ -94,7 +94,7 @@
 					<tbody>
 						<c:if test="${aptdeals.size() != null}">
 						<c:forEach var="aptdeal" items="${aptdeals}">
-							<tr style="cursor:pointer" onclick="window.open('${root}/Apt.do?act=info&no=${aptdeal.no}');" >
+							<tr style="cursor:pointer" onclick="window.open('${root}/Apt.do/view?no=${aptdeal.no}');" >
 								<td >${aptdeal.no}</td>
 								<td>${aptdeal.dong}</td>
 								<td>${aptdeal.aptName}</td>

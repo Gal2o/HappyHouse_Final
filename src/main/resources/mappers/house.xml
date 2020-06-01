@@ -4,4 +4,58 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="house">
 
+	<select id="searchAll" resultType="com.ssafy.happyhouse.model.dto.HouseDeal">
+		select d.no, d.dong, d.AptName, d.code, d.dealAmount,
+		d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area,
+		d.floor, d.jibun, d.type, d.rentMoney, i.img
+		from housedeal d join houseinfo i using(aptname)
+		where 1=1
+	</select>
+	
+	<select id="search" resultType="com.ssafy.happyhouse.model.dto.HouseDeal">
+		select d.no, d.dong, d.AptName, d.code, d.dealAmount,
+		d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area,
+		d.floor, d.jibun, d.type, d.rentMoney, i.img
+		from housedeal d join houseinfo i using(aptname)
+		where d.no = #{no};
+	</select>
+	
+	<select id="bsearchAll" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
+		select * from businessarea 
+		<if test = 'dong != null and dong != "" '>
+			where dong like concat('%', #{dong}, '%')
+		</if>
+		order by no desc
+	</select>
+	
+	<select id="bsearch" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
+		select * from businessarea
+		<if test = 'dong != null and dong != "" '>
+			where dong like concat('%', #{dong}, '%')
+		</if>
+		order by no desc
+	</select>
+	
+	<select id="esearchAll" resultType="com.ssafy.happyhouse.model.dto.EnvironmentInfo">
+		select * from environmentarea
+		<if test = 'dong != null and dong != "" '>
+			where dong like concat('%', #{dong}, '%')
+		</if>
+		order by no desc
+	</select>
+	
+	<select id="count" parameterType="hashmap" resultType="Integer">
+		select count(no)
+		from notice
+		<if test='key != null and key.equals("all")'>
+			where aptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%')
+		</if>
+		<if test='key != null and key.equals("aptName")'>
+			where aptName like concat('%',#{word},'%')
+		</if>
+		<if test='key != null and key.equals("dong")'>
+			where dong like concat('%',#{word},'%')
+		</if>
+	</select>
+
 </mapper>

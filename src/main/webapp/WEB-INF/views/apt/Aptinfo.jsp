@@ -23,7 +23,8 @@
 			<h3>아파트 정보</h3>
 			<div class="info">
 				<div class="apt-img apt-inline">
-					<img src="${root}/img/${aptdeal.img}" alt="그림 없음">
+					<%-- <img src="${root}/img/${aptdeal.img}" alt="그림 없음"> --%>
+					<img src="${aptdeal.img}" alt="그림 없음">
 				</div>
 				<div class="apt-table apt-inline">
 					<table class="table">
