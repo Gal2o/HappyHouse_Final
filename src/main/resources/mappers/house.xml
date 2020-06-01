@@ -22,25 +22,21 @@
 	
 	<select id="bsearchAll" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
 		select * from businessarea 
-		<if test = 'dong != null and dong != "" '>
-			where dong like concat('%', #{dong}, '%')
-		</if>
+			where dong like concat('%', #{word}, '%')
 		order by no desc
 	</select>
 	
 	<select id="bsearch" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
 		select * from businessarea
-		<if test = 'dong != null and dong != "" '>
-			where dong like concat('%', #{dong}, '%')
+		<if test = 'word != null'>
+			where dong like concat('%', #{word}, '%')
 		</if>
 		order by no desc
 	</select>
 	
 	<select id="esearchAll" resultType="com.ssafy.happyhouse.model.dto.EnvironmentInfo">
 		select * from environmentarea
-		<if test = 'dong != null and dong != "" '>
-			where dong like concat('%', #{dong}, '%')
-		</if>
+			where dong like concat('%', #{word}, '%')
 		order by no desc
 	</select>
 	
