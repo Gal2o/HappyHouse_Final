@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDto select(UserDto user) throws Exception {
-		return repo.select(user);
+	public UserDto select(String id) throws Exception {
+		return repo.select(id);
 	}
 
 	@Override

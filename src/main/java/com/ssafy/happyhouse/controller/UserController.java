@@ -26,9 +26,9 @@ public class UserController {
 	}
 	
 	@PostMapping("login")
-	public String login(UserDto userDto, Model model, HttpServletRequest request) {
+	public String login(String id,UserDto userDto, Model model, HttpServletRequest request) {
 		try {
-			UserDto user = service.select(userDto);
+			UserDto user = service.select(id);
 			if (user != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userinfo", user);
@@ -71,6 +71,18 @@ public class UserController {
 		}
 		
 		return "/index";
+	}
+	@GetMapping("view")
+	public String view(String id, Model model) {
+		try {
+			model.addAttribute("id", service.select(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원정보를 가져오지 못했습니다");
+			return "error/error";
+		}
+		
+		return "user/info";
 	}
 	
 	@GetMapping("revise")

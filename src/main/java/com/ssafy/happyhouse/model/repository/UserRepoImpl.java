@@ -19,8 +19,8 @@ public class UserRepoImpl implements UserRepo{
 		return sqlSession.selectList("user.selectAll");
 	}
 	@Override
-	public UserDto select(UserDto user) throws Exception{
-		return sqlSession.selectOne("user.select",user);
+	public UserDto select(String id) throws Exception{
+		return sqlSession.selectOne("user.select",id);
 	}
 
 	@Override
