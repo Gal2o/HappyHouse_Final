@@ -30,6 +30,7 @@
 			<div class="main-menu">
 				<nav>
 					<ul id="navigation">
+						<li><a href="${root}/qna.do/list">Q&A</a></li>
 						<li><a href="${root}/notice.do/list">공지사항</a></li>
 						<li><a href="${root}/Apt.do/site">사이트맵</a></li>
 						<li><a href="${root}/Apt.do/list">거래정보</a></li>
