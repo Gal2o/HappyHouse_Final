@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3Jh6Rt72qHXe5GomCfP_4LAuHjs_sr0U&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtbedEFS8QTfbiGZbEKwXoOCZ7xQ7C9aE&callback=initMap"></script>
 
 <!-- 시도/구군/동 선택 박스 -->
 <div class="location-select">
@@ -18,18 +19,6 @@
 
 <!-- 아파트 거래 정보 -->
 <div class="aptList-area">
-	<!-- 아파트 조회 정보 -->
-	<div class="aptList">
-<%-- 	<%@ include file = "/apt/AptList.jsp" %> --%>
-<!-- 		<table>
-			<tr>tes</tr>
-			<tr></tr>
-			<tr></tr>
-			<tr></tr>
-			<tr></tr>
-		</table> -->
-	</div>
-	
 	<!-- 지도 -->
 	<div class="map" id="map">
 	</div>
@@ -37,76 +26,78 @@
 
 <script>
 let colorArr = ['table-primary','table-success','table-danger'];
-$(document).ready(function(){
-	$.get("${pageContext.request.contextPath}/SelectBoxController"
-		,{command:"sido"}
-		,function(data, status){
-			$.each(data, function(index, vo) {
-				$("#sido").append("<option value='"+vo.sido_code+"'>"+vo.sido_name+"</option>");
-			});//each
-		}//function
-		, "json"
-	);//get
-});//ready
+$(document).ready(function() {
+	$.ajax({
+		type: 'GET',
+		url: '/selectbox.do/sido',
+		dataType: 'json',
+		success: function(data) {
+			var htmlTxt = $('#sido').html();
+			$.each(data,function(index, value) {
+				htmlTxt += '<option value="'+value.sido_code+'">'+value.sido_name+'</option>';
+			});
+			
+			$('#sido').html(htmlTxt);
+		}
+	});
+});
+
 $(document).ready(function(){
 	$("#sido").change(function() {
-		$.get("${pageContext.request.contextPath}/SelectBoxController"
-				,{command:"gugun", sido:$("#sido").val()}
-				,function(data, status){
-					$("#gugun").empty();
-					$("#gugun").append('<option value="0">선택</option>');
-					$.each(data, function(index, vo) {
-						$("#gugun").append("<option value='"+vo.gugun_code+"'>"+vo.gugun_name+"</option>");
-					});//each
-				}//function
-				, "json"
-		);//get
-	});//change
+		$.ajax({
+			type: 'GET',
+			url: '/selectbox.do/gugun/'+$('#sido').val(),
+			dataType: 'json',
+			success: function(data) {
+				$("#gugun").empty();
+				var htmlTxt = '<option value="0">선택</option>';
+				$.each(data,function(index, value) {
+					htmlTxt += '<option value="'+value.gugun_code+'">'+value.gugun_name+'</option>';
+				});
+				
+				$('#gugun').html(htmlTxt);
+			}
+		});
+	});//sido change
 	$("#gugun").change(function() {
-		$.get("${pageContext.request.contextPath}/SelectBoxController"
-				,{command:"dong", gugun:$("#gugun").val()}
-				,function(data, status){
-					$("#dong").empty();
-					$("#dong").append('<option value="0">선택</option>');
-					$.each(data, function(index, vo) {
-						$("#dong").append("<option value='"+vo.dong+"'>"+vo.dong+"</option>");
-					});//each
-				}//function
-				, "json"
-		);//get
-	});//change
+		$.ajax({
+			type: 'GET',
+			url: '/selectbox.do/dong/'+$('#gugun').val(),
+			dataType: 'json',
+			success: function(data) {
+				$("#dong").empty();
+				var htmlTxt = '<option value="0">선택</option>';
+				$.each(data,function(index, value) {
+					htmlTxt += '<option value="'+value.dong+'">'+value.dong+'</option>';
+				});
+				
+				$('#dong').html(htmlTxt);
+			}
+		});
+	});//gugun change
 	$("#dong").change(function() {
-		$.get("${pageContext.request.contextPath}/SelectBoxController"
-				,{command:"apt", dong:$("#dong").val()}
-				,function(data, status){
-					$("#searchResult").empty();
-					$.each(data, function(index, vo) {
-						let str = "<tr class="+colorArr[index%3]+">"
-						+ "<td>" + vo.no + "</td>"
-						+ "<td>" + vo.dong + "</td>"
-						+ "<td>" + vo.AptName + "</td>"
-						+ "<td>" + vo.jibun + "</td>"
-						+ "<td>" + vo.code
-						+ "</td><td id='lat_"+index+"'></td><td id='lng_"+index+"'></td></tr>";
-						$("tbody").append(str);
-						$("#searchResult").append(vo.dong+" "+vo.AptName+" "+vo.jibun+"<br>");
-					});//each
-					geocode(data);
-				}//function
-				, "json"
-		);//get
-	});//change
+		$.ajax({
+			type: 'GET',
+			url: '/selectbox.do/apt/'+$('#dong').val(),
+			dataType: 'json',
+			success: function(data) {
+				geocode(data);
+			}
+		});
+	});//dong change
 });//ready
+
 function geocode(jsonData) {
 	let idx = 0;
 	$.each(jsonData, function(index, vo) {
 		let tmpLat;
 		let tmpLng;
 		$.get("https://maps.googleapis.com/maps/api/geocode/json"
-				,{	key:'AIzaSyC3Jh6Rt72qHXe5GomCfP_4LAuHjs_sr0U'
+				,{	key:'AIzaSyBtbedEFS8QTfbiGZbEKwXoOCZ7xQ7C9aE'
 					, address:vo.dong+"+"+vo.AptName+"+"+vo.jibun
 				}
 				, function(data, status) {
+					console.log(data);
 					tmpLat = data.results[0].geometry.location.lat;
 					tmpLng = data.results[0].geometry.location.lng;
 					$("#lat_"+index).text(tmpLat);

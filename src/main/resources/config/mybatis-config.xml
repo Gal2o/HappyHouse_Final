@@ -5,6 +5,7 @@
 	<mappers>
 		<mapper resource="mappers/house.xml" />
 		<mapper resource="mappers/notice.xml" />
+		<mapper resource="mappers/selectBox.xml" />
 		<mapper resource="mappers/user.xml" />
 	</mappers>
 </configuration>
