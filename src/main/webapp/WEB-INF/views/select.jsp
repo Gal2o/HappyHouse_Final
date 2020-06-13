@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtbedEFS8QTfbiGZbEKwXoOCZ7xQ7C9aE&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV4wk3wNl5rTsYxoue9THZKVNIZK2-Reg&callback=initMap"></script>
 
 <!-- 시도/구군/동 선택 박스 -->
 <div class="location-select">
@@ -92,17 +92,18 @@ function geocode(jsonData) {
 	$.each(jsonData, function(index, vo) {
 		let tmpLat;
 		let tmpLng;
+		console.log(vo);
 		$.get("https://maps.googleapis.com/maps/api/geocode/json"
-				,{	key:'AIzaSyBtbedEFS8QTfbiGZbEKwXoOCZ7xQ7C9aE'
-					, address:vo.dong+"+"+vo.AptName+"+"+vo.jibun
+				,{	key:'AIzaSyDV4wk3wNl5rTsYxoue9THZKVNIZK2-Reg'
+					, address:vo.dong+"+"+vo.aptName+"+"+vo.jibun
 				}
 				, function(data, status) {
-					console.log(data);
+					console.log(data.results);
 					tmpLat = data.results[0].geometry.location.lat;
 					tmpLng = data.results[0].geometry.location.lng;
 					$("#lat_"+index).text(tmpLat);
 					$("#lng_"+index).text(tmpLng);
-					addMarker(tmpLat, tmpLng, vo.AptName);
+					addMarker(tmpLat, tmpLng, vo.aptName);
 				}
 				, "json"
 		);//get
