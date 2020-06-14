@@ -15,14 +15,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  
+ <link rel="stylesheet" href="../css/style.css"> 
   <script type="text/javascript">
 			function back(){
-				document.location.href = "${root}/User.do?act=mvinfo";
+				document.location.href = "${root}/User.do/info";
 			}
 			
 			function del(){
-				document.location.href = "${root}/User.do?act=del";
+				document.location.href = "${root}/";
 			}
 	</script>
 </head>

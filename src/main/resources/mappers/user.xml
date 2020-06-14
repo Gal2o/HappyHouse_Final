@@ -12,25 +12,33 @@
 	
 	<!-- 로그인 -->
 	<select id="select" resultType="com.ssafy.happyhouse.model.dto.UserDto">
-		select id, name, address, phone
+		select *
 		from userinfo
 		where id=#{id} and password=#{password}
 	</select>
+
 	
 	<!-- 회원가입 -->
 	<insert id="insert">
-		insert into userinfo (id, password, name,address,phone)
+		insert into userinfo(id, password, name,address,phone)
 		values (#{id},#{password},#{name},#{address},#{phone})
 	</insert>
 	<!-- 회정 수정 -->
 	<update id="update">
-		update user
-		set password=#{password},password=#{passcheck}, address=#{address}, phone=#{phone}
+		update userinfo
+		set name=#{name}, password=#{password},password=#{password}, phone=#{phone}, address=#{address}
 		where id=#{id}	
 	</update>
 	<!-- 회정 삭제 -->
 	<delete id="delete">
-		delete from user
+		delete from userinfo
 		where id=#{id}
 	</delete>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="searchPw" resultType="com.ssafy.happyhouse.model.dto.UserDto">
+		select id, password, name, address, phone
+		from userinfo
+		where id=#{id}
+	</select>
 </mapper>

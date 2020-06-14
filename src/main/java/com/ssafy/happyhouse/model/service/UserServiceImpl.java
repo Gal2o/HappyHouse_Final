@@ -19,9 +19,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDto select(String id) throws Exception {
-		return repo.select(id);
+	public UserDto select(UserDto user) throws Exception {
+		return repo.select(user);
 	}
+
 
 	@Override
 	public void insert(UserDto user) throws Exception {
@@ -39,6 +40,13 @@ public class UserServiceImpl implements UserService{
 	public void delete(String no) throws Exception {
 		repo.delete(no);
 		return;
+	}
+
+	@Override
+	public UserDto searchPw(String id) throws Exception {
+		UserDto tmp = repo.searchPw(id);		
+		System.out.println("repo test: "+ tmp.getId());
+		return repo.searchPw(id);
 	}
 
 }

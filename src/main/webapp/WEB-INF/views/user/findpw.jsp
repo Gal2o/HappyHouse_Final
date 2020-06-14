@@ -19,8 +19,7 @@
 		if(document.getElementById("id").value == "") {
 			alert("아이디 입력!!!");
 		} else {
-			document.getElementById("loginform").action = "${root}/User.do?act=findpw";
-			document.getElementById("loginform").submit();
+			$("#loginform").attr("action", "${root}/User.do/findsuccess").submit();
 		}
 	}
 </script>

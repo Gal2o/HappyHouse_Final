@@ -36,11 +36,11 @@ function login() {
 }
 	 
 function moveJoin() {
-	document.location.href = "${root}/User.do?act=mvjoin";
+	document.location.href ="${root}/User.do/join";
 }	
 
 function mvfindpw(){
-	document.location.href = "${root}/User.do?act=mvfindpw";
+	document.location.href = "${root}/User.do/findpw";
 }
 </script>
 </head>

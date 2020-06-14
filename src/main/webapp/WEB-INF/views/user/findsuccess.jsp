@@ -14,16 +14,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<c:if test="${userlist.size() != 0}">
-	<c:forEach var="user" items="${userlist}">
+<hr><hr>
 		<div class="container">
 		  <div class="jumbotron">
 		    <p>${msg}</p>
 		    <h1>${user.id} 님의 비밀번호는 <strong>${user.password}</strong> 입니다.</h1>      
 		  </div>  
-		  <p><a href="${root}">메인으로 가기</a></p>
+		  <p><a href="${root}/User.do/login">로그인 하러 가기</a></p>
 		</div>
-	</c:forEach>
-</c:if>
 </body>
 </html>

@@ -20,20 +20,25 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
+	@GetMapping("main")
+	public String mainPage() {
+		return "index";
+	}
 	@GetMapping("login")
 	public String loginPage() {
 		return "user/login";
 	}
 	
 	@PostMapping("login")
-	public String login(String id,UserDto userDto, Model model, HttpServletRequest request) {
+	public String login(UserDto userDto, Model model, HttpServletRequest request) {
 		try {
-			UserDto user = service.select(id);
-			if (user != null) {
+			UserDto user = service.select(userDto);
+			
+			if (user.getPassword().equals(userDto.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userinfo", user);
 			} else {
-				model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인 해 주세요.");
+				model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인 해 주세요!!");
 				return "error/error";
 			}
 		} catch (Exception e) {
@@ -72,27 +77,47 @@ public class UserController {
 		
 		return "/index";
 	}
-	@GetMapping("view")
-	public String view(String id, Model model) {
+	@GetMapping("findpw")
+	public String findpwPage() {
+		return "/user/findpw";
+	}
+	@PostMapping("findsuccess")
+	public String findsuccess(String id, Model model) {
+		System.out.println(id);
 		try {
-			model.addAttribute("id", service.select(id));
+			UserDto tmp = service.searchPw(id);
+			System.out.println("비밀번호 확인 : " + tmp.getPassword());
+			
+			model.addAttribute("user", service.searchPw(id));
+			model.addAttribute("msg", "비밀번호 찾기 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "회원정보를 가져오지 못했습니다");
+			model.addAttribute("msg", "비밀번호를 찾지 못했습니다");
 			return "error/error";
 		}
 		
-		return "user/info";
+		return "user/findsuccess";
+	}
+	@GetMapping("info")
+	public String infoPage() {
+		return "/user/info";
+	}
+	@GetMapping("view")
+	public String view(String id, Model model) {
+		return "/index";
 	}
 	
 	@GetMapping("revise")
 	public String revisePage() {
 		return "/user/revise";
 	}
+	
 	@PostMapping("revise")
-	public String update(UserDto userDto, Model model) {
+	public String update(UserDto userDto, String tel1, String tel2, String tel3, Model model) {
 		try {
+			userDto.setPhone(tel1+"-"+tel2+"-"+tel3);
 			service.update(userDto);
+			model.addAttribute("userinfo", service.searchPw(userDto.getId()));
 			model.addAttribute("msg", "회원정보수정에 성공하였습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,10 +125,14 @@ public class UserController {
 			return "error/error";
 		}
 		
-		return "/index";
+		return "user/info";
+	}
+	@GetMapping("delete")
+	public String deletePage() {
+		return "/user/delete";
 	}
 	
-	@GetMapping("delete")
+	@PostMapping("delete")
 	public String delete(String id, Model model) {
 		try {
 			service.delete(id);

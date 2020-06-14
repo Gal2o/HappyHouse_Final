@@ -19,8 +19,8 @@ public class UserRepoImpl implements UserRepo{
 		return sqlSession.selectList("user.selectAll");
 	}
 	@Override
-	public UserDto select(String id) throws Exception{
-		return sqlSession.selectOne("user.select",id);
+	public UserDto select(UserDto user) throws Exception{
+		return sqlSession.selectOne("user.select",user);
 	}
 
 	@Override
@@ -36,6 +36,10 @@ public class UserRepoImpl implements UserRepo{
 	@Override
 	public void delete(String id) throws Exception{
 		sqlSession.delete("user.delete",id);		
+	}
+	@Override
+	public UserDto searchPw(String id) throws Exception {
+		return sqlSession.selectOne("user.searchPw",id);
 	}
 
 
