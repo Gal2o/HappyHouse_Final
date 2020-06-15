@@ -1,8 +1,5 @@
 package com.ssafy.happyhouse.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,6 +47,7 @@ public class NoticeController {
 			
 			model.addAttribute("notices", service.listNotice(currentPage, sizePerPage, key, word));
 			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word));
+			model.addAttribute("word", word);
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "글목록을 얻어오는 중 문제가 발생했습니다.");

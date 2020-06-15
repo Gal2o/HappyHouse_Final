@@ -54,7 +54,7 @@
 							<option value="subject">제목</option>
 							<option value="content">내용</option>
 						</select>
-						<input type="text" class="form-control" placeholder="검색어 입력" name="word" id="word">
+						<input type="text" class="form-control" placeholder="검색어 입력" name="word" id="word" value="${word}">
 						<button type="submit" class="btn btn-dark">검색</button>
 					</td>
 	  			</tr>
