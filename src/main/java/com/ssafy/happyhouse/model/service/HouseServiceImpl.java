@@ -1,5 +1,6 @@
 package com.ssafy.happyhouse.model.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class HouseServiceImpl implements HouseService {
 	private HouseRepo houseRepo;
 	
 	@Override
-	public List<HouseDeal> searchAll(int currentPage, int sizePerPage, String key, String word, String type[]) throws Exception {
+	public List<HouseDeal> searchAll(int currentPage, int sizePerPage, String key, String word, LinkedList<String> type) throws Exception {
 		return houseRepo.searchAll(currentPage, sizePerPage, key, word, type);
 	}
 

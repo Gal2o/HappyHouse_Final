@@ -18,8 +18,10 @@ public class EnvironmentRepoImpl implements EnvironmentRepo {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<EnvironmentInfo> searchAll(String word) {
-		return sqlSession.selectList("house.esearchAll",word);
+	public List<EnvironmentInfo> searchAll(int currentPage, int sizePerPage, String word) {
+		RowBounds bounds = new RowBounds((currentPage - 1) * sizePerPage, sizePerPage);
+
+		return sqlSession.selectList("house.esearchAll", word, bounds);
 	}
 
 	@Override
@@ -27,4 +29,9 @@ public class EnvironmentRepoImpl implements EnvironmentRepo {
 		return sqlSession.selectOne("house.esearch", word);
 	}
 
+	@Override
+	public int getTotalCount(String word) throws Exception {
+		if (word == null) word = "null";
+		return sqlSession.selectOne("house.ecount", word);
+	}
 }

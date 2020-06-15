@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.LinkedList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,13 +43,18 @@ public class HouseController {
 			@RequestParam(value="key", required=false, defaultValue="") String key,
 			@RequestParam(value="word", required=false, defaultValue="") String word,
 			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
-			@RequestParam(value="aptdeal", required=false, defaultValue="1,2,3,4") String type[], 
+			@RequestParam(value="aptdeal", required=false, defaultValue="1,2,3,4") LinkedList<String> type, 
 			Model model) {
 		
 		int sizePerPage = 10;
 		try {
+			System.out.println(type);
 			model.addAttribute("aptdeals", service.searchAll(currentPage, sizePerPage, key, word, type));
 			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word));
+			model.addAttribute("key", key);
+			model.addAttribute("word", word);
+			model.addAttribute("aptdeal", type);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "상세 내용 조회 중 문제가 발생했습니다.");
@@ -70,16 +77,14 @@ public class HouseController {
 	
 	@GetMapping("barea")
 	public String barea(
-			@RequestParam(value="key", required=false, defaultValue="") String key, 
 			@RequestParam(value="word", required=false, defaultValue="") String word,
 			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
 			Model model) {
 		int sizePerPage = 10;
 		try {
-			model.addAttribute("word", word);
 			model.addAttribute("barea", bservice.searchAll(currentPage, sizePerPage, word));
 			model.addAttribute("navigation", bservice.makePageNavigation(currentPage, sizePerPage, word));
-			System.out.println(2);
+			model.addAttribute("word",word);
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "상세 내용 조회 중 문제가 발생했습니다.");
@@ -90,10 +95,17 @@ public class HouseController {
 	}
 	
 	@GetMapping("earea")
-	public String earea(@RequestParam(value="word", required=false, defaultValue="") String word, Model model) {
+	public String earea(
+			@RequestParam(value="word", required=false, defaultValue="") String word,
+			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
+			Model model) {
+		
+		int sizePerPage = 10;
 		
 		try {
-			model.addAttribute("earea", eservice.searchAll(word));
+			model.addAttribute("earea", eservice.searchAll(currentPage, sizePerPage, word));
+			model.addAttribute("navigation", eservice.makePageNavigation(currentPage, sizePerPage, word));
+			model.addAttribute("word",word);
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "상세 내용 조회 중 문제가 발생했습니다.");

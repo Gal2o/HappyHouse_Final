@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.model.repository;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +20,12 @@ public class HouseRepoImpl implements HouseRepo {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<HouseDeal> searchAll(int currentPage, int sizePerPage, String key, String word, String type[]) {
-		Map<String, String> map = new HashMap<String, String>();
+	public List<HouseDeal> searchAll(int currentPage, int sizePerPage, String key, String word, LinkedList<String> type) {
+		Map<String, Object> map = new HashMap<>();
 		map.put("key", key);
 		map.put("word", word);
+		map.put("aptdeal", type);
+		System.out.println(map);
 		
 		RowBounds bounds = new RowBounds((currentPage-1)*sizePerPage, sizePerPage);
 		return sqlSession.selectList("house.searchAll", map, bounds);
