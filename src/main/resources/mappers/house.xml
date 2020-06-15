@@ -56,9 +56,9 @@
 		order by no desc
 	</select>
 	
-	<select id="bcount" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
+	<select id="bcount" resultType="Integer">
 		select count(no) from businessarea
-		<if test = "value != null" >
+		<if test='!value.equals("null")'>
 			where dong like concat('%', #{value}, '%')
 		</if>
 	</select>
@@ -68,6 +68,4 @@
 			where dong like concat('%', #{word}, '%')
 		order by no desc
 	</select>
-	
-
 </mapper>

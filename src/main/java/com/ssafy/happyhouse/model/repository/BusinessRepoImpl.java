@@ -31,6 +31,7 @@ public class BusinessRepoImpl implements BusinessRepo {
 
 	@Override
 	public int getTotalCount(String word) throws Exception {
+		if (word == null) word = "null";
 		return sqlSession.selectOne("house.bcount", word);
 	}
 

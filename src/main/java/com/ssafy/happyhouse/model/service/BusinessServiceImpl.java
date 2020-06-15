@@ -36,7 +36,6 @@ public class BusinessServiceImpl implements BusinessService{
 		
 		int totalCount = bizRepo.getTotalCount(word);	// 총 게시글 수
 		pageNavigation.setTotalCount(totalCount);
-		
 		int totalPageCount = (totalCount-1)/naviSize+1;	// 총 페이지수
 		pageNavigation.setTotalPageCount(totalPageCount);
 		

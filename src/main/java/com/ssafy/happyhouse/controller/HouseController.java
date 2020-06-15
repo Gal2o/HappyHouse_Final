@@ -73,10 +73,8 @@ public class HouseController {
 			@RequestParam(value="word", required=false, defaultValue="") String word,
 			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
 			Model model) {
-		
 		int sizePerPage = 10;
 		try {
-			System.out.println(word);
 			model.addAttribute("barea", bservice.searchAll(currentPage, sizePerPage, word));
 			model.addAttribute("navigation", bservice.makePageNavigation(currentPage, sizePerPage, word));
 			System.out.println(2);
