@@ -44,9 +44,11 @@ public class NoticeController {
 					   Model model) {
 		int sizePerPage = 5;
 		try {
-			
+			System.out.println("word: "+word);
+			System.out.println("pg: "+currentPage);
 			model.addAttribute("notices", service.listNotice(currentPage, sizePerPage, key, word));
 			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word));
+			model.addAttribute("key", key);
 			model.addAttribute("word", word);
 		} catch (Exception e) {
 			e.printStackTrace();

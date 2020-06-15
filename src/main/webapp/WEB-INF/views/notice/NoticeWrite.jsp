@@ -37,6 +37,7 @@
 			<h3>글을 등록해주세요.</h3> 
 			<div class="col-lg-6" align="center">
 			<form id="writeform" method="post">
+				<input type="hidden" name="id" id="id" value="${userinfo.id}">
 				<div class="form-group">
 					<label for="subject">제목</label>
 					<input type="text" class="form-control" id="subject" name="subject">
