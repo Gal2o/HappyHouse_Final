@@ -70,6 +70,7 @@ public class HouseController {
 	
 	@GetMapping("barea")
 	public String barea(
+			@RequestParam(value="key", required=false, defaultValue="") String key, 
 			@RequestParam(value="word", required=false, defaultValue="") String word,
 			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
 			Model model) {

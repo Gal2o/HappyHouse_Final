@@ -32,6 +32,7 @@
 	<form name="pageform" id="pageform" method="GET" action="">
 		<input type="hidden" name="act" id="act" value="barea">
 		<input type="hidden" name="pg" id="pg" value="">
+		<input type="hidden" name="key" id="key" value="${key}">
 		<input type="hidden" name="word" id="word" value="${word}">
 	</form>
 	<div class = "box">
@@ -43,7 +44,7 @@
 				<table class="table table-borderless">
 					<tr class="form-inline">
 						<td>
-						<input type="text" class="form-control" placeholder="관심지역(동) 입력." name="word" id="word">
+						<input type="text" class="form-control" placeholder="관심지역(동) 입력." name="word" id="word" value="${word}">
 						<button type="button" class="btn btn-dark" onclick="javascript:searchArea();">검색</button>
 			   			</td>
 			   		</tr>
