@@ -75,6 +75,7 @@ public class HouseController {
 			Model model) {
 		int sizePerPage = 10;
 		try {
+			model.addAttribute("word", word);
 			model.addAttribute("barea", bservice.searchAll(currentPage, sizePerPage, word));
 			model.addAttribute("navigation", bservice.makePageNavigation(currentPage, sizePerPage, word));
 			System.out.println(2);
