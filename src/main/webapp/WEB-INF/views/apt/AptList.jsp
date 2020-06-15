@@ -14,15 +14,15 @@
 		<title>거래정보</title>
 		<script type="text/javascript">
 			function searchAll(){
-				location.href="${root}/Apt.do/list";
+				location.href ="${root}/Apt.do/list";
 			}
 			function searchApt() {
-				document.getElementById("searchform").action = "${root}/Apt.do";
+				document.getElementById("searchform").action = "${root}/Apt.do/list";
 				document.getElementById("searchform").submit();
 			}
 			function pageMove(pg) { 
 				document.getElementById("pg").value=pg;
-				document.getElementById("pageform").action = "${root}/Apt.do";
+				document.getElementById("pageform").action = "${root}/Apt.do/list";
 				document.getElementById("pageform").submit();
 			}
 		</script>

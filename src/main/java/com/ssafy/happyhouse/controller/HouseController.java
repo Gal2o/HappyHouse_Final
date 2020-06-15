@@ -38,15 +38,16 @@ public class HouseController {
 	
 	@GetMapping("list")
 	public String list(
-			@RequestParam(value="key", required=false, defaultValue="all") String key,
+			@RequestParam(value="key", required=false, defaultValue="") String key,
 			@RequestParam(value="word", required=false, defaultValue="") String word,
 			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
-			@RequestParam(value="aptdeal", required=false, defaultValue="") String type[], 
+			@RequestParam(value="aptdeal", required=false, defaultValue="1,2,3,4") String type[], 
 			Model model) {
 		
-		int sizePerPage = 5;
+		int sizePerPage = 10;
 		try {
 			model.addAttribute("aptdeals", service.searchAll(currentPage, sizePerPage, key, word, type));
+			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word));
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "상세 내용 조회 중 문제가 발생했습니다.");
@@ -70,9 +71,15 @@ public class HouseController {
 	@GetMapping("barea")
 	public String barea(
 			@RequestParam(value="word", required=false, defaultValue="") String word,
+			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
 			Model model) {
+		
+		int sizePerPage = 10;
 		try {
-			model.addAttribute("barea", bservice.searchAll(word));
+			System.out.println(word);
+			model.addAttribute("barea", bservice.searchAll(currentPage, sizePerPage, word));
+			model.addAttribute("navigation", bservice.makePageNavigation(currentPage, sizePerPage, word));
+			System.out.println(2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "상세 내용 조회 중 문제가 발생했습니다.");
@@ -83,10 +90,7 @@ public class HouseController {
 	}
 	
 	@GetMapping("earea")
-	public String earea(
-			@RequestParam(value="word", required=false, defaultValue="") String word,
-			Model model
-			) {
+	public String earea(@RequestParam(value="word", required=false, defaultValue="") String word, Model model) {
 		
 		try {
 			model.addAttribute("earea", eservice.searchAll(word));

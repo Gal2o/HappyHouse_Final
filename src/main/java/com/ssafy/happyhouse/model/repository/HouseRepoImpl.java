@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,8 +20,12 @@ public class HouseRepoImpl implements HouseRepo {
 
 	@Override
 	public List<HouseDeal> searchAll(int currentPage, int sizePerPage, String key, String word, String type[]) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("key", key);
+		map.put("word", word);
 		
-		return sqlSession.selectList("house.searchAll");
+		RowBounds bounds = new RowBounds((currentPage-1)*sizePerPage, sizePerPage);
+		return sqlSession.selectList("house.searchAll", map, bounds);
 	}
 
 	@Override
@@ -33,7 +38,6 @@ public class HouseRepoImpl implements HouseRepo {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("key", key);
 		map.put("word", word);
-		
 		return sqlSession.selectOne("house.count", map);
 	}
 }

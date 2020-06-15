@@ -34,7 +34,7 @@
 						<li><a href="${root}/Apt.do/site">사이트맵</a></li>
 						<li><a href="${root}/Apt.do/list">거래정보</a></li>
 						<c:if test="${userinfo != null}">
-							<li><a href="${root}/Apt.do/barea">상권 정보</a></li>
+							<li><a href="${root}/Apt.do/barea">상권정보</a></li>
 							<li><a href="${root}/Apt.do/earea">대기오염 정보</a></li>
 							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 설정</a></li>
 							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 둘러보기</a></li>

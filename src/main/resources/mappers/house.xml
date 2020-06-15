@@ -4,12 +4,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="house">
 
-	<select id="searchAll" resultType="com.ssafy.happyhouse.model.dto.HouseDeal">
-		select d.no, d.dong, d.AptName, d.code, d.dealAmount,
+	<select id="searchAll" parameterType="hashmap" resultType="com.ssafy.happyhouse.model.dto.HouseDeal">
+		select distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount,
 		d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area,
 		d.floor, d.jibun, d.type, d.rentMoney, i.img
 		from housedeal d join houseinfo i using(aptname)
-		where 1=1
+		<if test='key != null and key.equals("all")'>
+			where AptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%')
+		</if>
+		<if test='key != null and key.equals("aptname")'>
+			where aptname like concat('%',#{word},'%')
+		</if>
+		<if test='key != null and key.equals("dong")'>
+			where dong like concat('%',#{word},'%')
+		</if>
 	</select>
 	
 	<select id="search" resultType="com.ssafy.happyhouse.model.dto.HouseDeal">
@@ -20,18 +28,39 @@
 		where d.no = #{no};
 	</select>
 	
-	<select id="bsearchAll" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
+	<select id="count" parameterType="hashmap" resultType="Integer">
+		select count(no)
+		from housedeal
+		<if test='key != null and key.equals("all")'>
+			where AptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%')
+		</if>
+		<if test='key != null and key.equals("aptName")'>
+			where AptName like concat('%',#{word},'%')
+		</if>
+		<if test='key != null and key.equals("dong")'>
+			where dong like concat('%',#{word},'%')
+		</if>
+	</select>
+	
+	<select id="bsearchAll" parameterType ="String" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
 		select * from businessarea 
-			where dong like concat('%', #{word}, '%')
+		<if test = "value != null" >
+			where dong like concat('%', #{value}, '%')
+		</if>
 		order by no desc
 	</select>
 	
-	<select id="bsearch" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
+	<select id="bsearch" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
 		select * from businessarea
-		<if test = 'word != null'>
-			where dong like concat('%', #{word}, '%')
-		</if>
+		where dong like concat('%', #{value}, '%')
 		order by no desc
+	</select>
+	
+	<select id="bcount" parameterType="String" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
+		select count(no) from businessarea
+		<if test = "value != null" >
+			where dong like concat('%', #{value}, '%')
+		</if>
 	</select>
 	
 	<select id="esearchAll" resultType="com.ssafy.happyhouse.model.dto.EnvironmentInfo">
@@ -40,18 +69,5 @@
 		order by no desc
 	</select>
 	
-	<select id="count" parameterType="hashmap" resultType="Integer">
-		select count(no)
-		from notice
-		<if test='key != null and key.equals("all")'>
-			where aptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%')
-		</if>
-		<if test='key != null and key.equals("aptName")'>
-			where aptName like concat('%',#{word},'%')
-		</if>
-		<if test='key != null and key.equals("dong")'>
-			where dong like concat('%',#{word},'%')
-		</if>
-	</select>
 
 </mapper>

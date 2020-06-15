@@ -21,7 +21,7 @@
 		}
 		function pageMove(pg) { 
 			document.getElementById("pg").value=pg;
-			document.getElementById("pageform").action = "${root}/Apt.do";
+			document.getElementById("pageform").action = "${root}/Apt.do/earea";
 			document.getElementById("pageform").submit();
 		}
 </script>
