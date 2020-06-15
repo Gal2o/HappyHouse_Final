@@ -20,6 +20,14 @@
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript">
 $(document).ready(function() {
+	var tel2 = document.getElementById("tel2");
+	var tel3 = document.getElementById("tel3");
+	
+	var phoneInfo = "${userinfo.phone}".split("-");
+	$("#tel1").val(phoneInfo[0]).prop("selected", true);
+	tel2.setAttribute("value", phoneInfo[1]);
+	tel3.setAttribute("value", phoneInfo[2]);
+	
 	$("#reviseBtn").click(function() {
 		
 		if($("#name").val() == "") {
@@ -58,7 +66,7 @@ function back(){
 			<form id="memberform" method="post" action="">
 				<div class="form-group" align="left">
 					<label for="name">이름</label>
-					<input type="text" class="form-control" id="name" name="name" placeholder="">
+					<input type="text" class="form-control" value="${userinfo.name}" id="name" name="name" placeholder="">
 				</div>
 				<input type="hidden" class="form-control" id="id" name="id" value="${userinfo.id }">
 				<div class="form-group" align="left">
@@ -87,7 +95,7 @@ function back(){
 				</div>
 				<div class="form-group" align="left">
 					<label for="">주소</label><br>
-					<input type="text" class="form-control" id="address" name="address" placeholder="">
+					<input type="text" class="form-control" value="${userinfo.address}" id="address" name="address" placeholder="">
 				</div>
 				<div class="form-group" align="center">
 					<button type="button" class="btn btn-primary" onclick="javascript:back();">돌아가기</button>

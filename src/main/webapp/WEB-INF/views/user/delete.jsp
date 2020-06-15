@@ -22,7 +22,7 @@
 			}
 			
 			function del(){
-				document.location.href = "${root}/";
+				document.location.href = "${root}/User.do/delete";
 			}
 	</script>
 </head>

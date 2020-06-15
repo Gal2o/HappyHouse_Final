@@ -128,14 +128,14 @@ public class UserController {
 		return "user/info";
 	}
 	@GetMapping("delete")
-	public String deletePage() {
-		return "/user/delete";
-	}
-	
-	@PostMapping("delete")
-	public String delete(String id, Model model) {
+	public String delete(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		UserDto user = (UserDto) session.getAttribute("userinfo");
+		String id = user.getId();
+		
 		try {
 			service.delete(id);
+			session.removeAttribute("userinfo");
 			model.addAttribute("msg", "회원을 탈퇴했습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,5 +145,4 @@ public class UserController {
 		
 		return "/index";
 	}
-	
 }
