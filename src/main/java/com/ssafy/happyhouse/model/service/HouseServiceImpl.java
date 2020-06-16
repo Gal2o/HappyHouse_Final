@@ -28,7 +28,7 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public PageNavigation makePageNavigation(int currentPage, int sizePerPage, String key, String word)
+	public PageNavigation makePageNavigation(int currentPage, int sizePerPage, String key, String word, LinkedList<String> type)
 			throws Exception {
 		
 		PageNavigation pageNavigation = new PageNavigation();
@@ -37,7 +37,7 @@ public class HouseServiceImpl implements HouseService {
 		pageNavigation.setCurrentPage(currentPage);
 		pageNavigation.setNaviSize(naviSize);
 		
-		int totalCount = houseRepo.getTotalCount(key, word);	// 총 게시글 수
+		int totalCount = houseRepo.getTotalCount(key, word, type);	// 총 게시글 수
 		pageNavigation.setTotalCount(totalCount);
 		
 		int totalPageCount = (totalCount-1)/naviSize+1;	// 총 페이지수

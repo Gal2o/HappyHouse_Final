@@ -11,5 +11,5 @@ public interface HouseRepo {
 	
 	public HouseDeal search(int no);
 	
-	public int getTotalCount(String key, String word) throws Exception;
+	public int getTotalCount(String key, String word, LinkedList<String> type) throws Exception;
 }

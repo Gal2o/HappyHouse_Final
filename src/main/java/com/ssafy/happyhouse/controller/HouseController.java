@@ -50,11 +50,11 @@ public class HouseController {
 		try {
 			System.out.println(type);
 			model.addAttribute("aptdeals", service.searchAll(currentPage, sizePerPage, key, word, type));
-			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word));
+			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word, type));
 			model.addAttribute("key", key);
 			model.addAttribute("word", word);
 			model.addAttribute("aptdeal", type);
-			
+			System.out.println(type);
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", "상세 내용 조회 중 문제가 발생했습니다.");

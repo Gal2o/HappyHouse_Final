@@ -12,5 +12,5 @@ public interface HouseService {
 	
 	public HouseDeal search(int no);
 	
-	public PageNavigation makePageNavigation(int currentPage, int sizePerPage, String key, String word) throws Exception;
+	public PageNavigation makePageNavigation(int currentPage, int sizePerPage, String key, String word, LinkedList<String> type) throws Exception;
 }

@@ -9,25 +9,21 @@
 		d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area,
 		d.floor, d.jibun, d.type, d.rentMoney, i.img
 		from housedeal d join houseinfo i using(aptname)
-		where 1=1 
+		where 1=1 and type in
+		<foreach collection="type" item="item" index="index" open ="(" separator = "," close = ")">
+			${type[index]}
+		</foreach>
 		
 		<if test='key != null and key.equals("all")'>
-			and d.AptName like concat('%',#{word},'%') or d.dong like concat('%',#{word},'%')
+			and (d.aptName like concat('%',#{word},'%') or d.dong like concat('%',#{word},'%'))
 		</if>
-		<if test='key != null and key.equals("aptname")'>
-			and d.aptname like concat('%',#{word},'%')
+		<if test='key != null and key.equals("aptName")'>
+			and d.aptName like concat('%',#{word},'%')
 		</if>
 		<if test='key != null and key.equals("dong")'>
 			and d.dong like concat('%',#{word},'%')
 		</if>
-		
-		<if test= "aptdeal != 0">
-			and type in
-			<foreach collection="aptdeal" item="item" open ="(" separator = "," close = ")">
-				#{item}
-			</foreach>
-		</if>
-		
+
 		order by no
 	</select>
 	
@@ -41,24 +37,22 @@
 	
 	<select id="count" parameterType="hashmap" resultType="Integer">
 		select count(no)
-		from housedeal where 1=1 
+		from housedeal
+		where 1=1 and type in
+		<foreach collection="type" item="item" index="index" open ="(" separator = "," close = ")">
+			${type[index]}
+		</foreach>
 		
 		<if test='key != null and key.equals("all")'>
-			and AptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%')
+			and (aptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%'))
 		</if>
 		<if test='key != null and key.equals("aptName")'>
-			and AptName like concat('%',#{word},'%')
+			and aptName like concat('%',#{word},'%')
 		</if>
 		<if test='key != null and key.equals("dong")'>
 			and dong like concat('%',#{word},'%')
 		</if>
 		
-		<if test= "aptdeal != 0">
-			and type in
-			<foreach collection="aptdeal" item="item" open ="(" separator = "," close = ")">
-				#{item}
-			</foreach>
-		</if>
 	</select>
 	
 	<select id="bsearchAll" parameterType ="String" resultType="com.ssafy.happyhouse.model.dto.BusinessInfo">
