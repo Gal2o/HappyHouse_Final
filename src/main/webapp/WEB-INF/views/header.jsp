@@ -36,8 +36,8 @@
 						<c:if test="${userinfo != null}">
 							<li><a href="${root}/Apt.do/barea">상권정보</a></li>
 							<li><a href="${root}/Apt.do/earea">대기오염 정보</a></li>
-							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 설정</a></li>
-							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 둘러보기</a></li>
+							<%-- <li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 설정</a></li>
+							<li><a href="${root}/Apt.do?act=mvsetarea">관심 지역 둘러보기</a></li> --%>
 						</c:if>
 						<li><input type="text" placeholder="serach"></li>
 					</ul>

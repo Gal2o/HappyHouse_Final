@@ -33,7 +33,6 @@
 		</header>
 		<div class="box" align="center">
 			<form name="pageform" id="pageform" method="GET" action="">
-				<input type="hidden" name="act" id="act" value="list">
 				<input type="hidden" name="pg" id="pg" value="">
 				<input type="hidden" name="key" id="key" value="${key}">
 				<input type="hidden" name="word" id="word" value="${word}">
@@ -45,24 +44,23 @@
 			<div class="container" align="center">
 			<div>
 				<form id="searchform" method="get" action="">
-					<input type="hidden" name="act" id="act" value="list">
 					<input type="hidden" name="pg" id="pg" value="1">
-					<table class="table table-borderless">
+					<table class="table table-borderless"> 
 						<tr class="custom-control custom-checkbox" align="right">
 							<td>
-								<input type="checkbox" class="custom-control-input" id="1" name="aptdeal" value="1" checked="checked">
+								<input type="checkbox" class="custom-control-input" id="1" name="aptdeal" value="1" checked="checked"/>
 								<label class="custom-control-label" for="1">아파트 매매</label>
 							</td>
 							<td>
-								<input type="checkbox" class="custom-control-input" id="2" name="aptdeal" value="2" checked="checked">
+								<input type="checkbox" class="custom-control-input" id="2" name="aptdeal" value="2" checked="checked"/>
 				   				<label class="custom-control-label" for="2">다세대,주택 매매</label>
 							</td>
 							<td>
-								<input type="checkbox" class="custom-control-input" id="3" name="aptdeal" value="3" checked="checked">
+								<input type="checkbox" class="custom-control-input" id="3" name="aptdeal" value="3" checked="checked"/>
 			   					<label class="custom-control-label" for="3">아파트 전월세</label>
 							</td>
 							<td>
-								<input type="checkbox" class="custom-control-input" id="4" name="aptdeal" value="4" checked="checked">
+								<input type="checkbox" class="custom-control-input" id="4" name="aptdeal" value="4" checked="checked"/>
 			   					<label class="custom-control-label" for="4">다세대,주택 전월세</label>
 							</td>
 						</tr>
@@ -95,7 +93,7 @@
 						<c:if test="${aptdeals.size() != null}">
 						<c:forEach var="aptdeal" items="${aptdeals}">
 							<tr style="cursor:pointer" onclick="window.open('${root}/Apt.do/view?no=${aptdeal.no}');" >
-								<td >${aptdeal.no}</td>
+								<td>${aptdeal.no}</td>
 								<td>${aptdeal.dong}</td>
 								<td>${aptdeal.aptName}</td>
 					        	<td>${aptdeal.dealAmount}</td>

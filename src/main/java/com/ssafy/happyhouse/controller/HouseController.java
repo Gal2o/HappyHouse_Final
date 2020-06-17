@@ -42,11 +42,12 @@ public class HouseController {
 	public String list(
 			@RequestParam(value="key", required=false, defaultValue="") String key,
 			@RequestParam(value="word", required=false, defaultValue="") String word,
-			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage,
+			@RequestParam(value="pg", required=false, defaultValue="1") int currentPage, 
 			@RequestParam(value="aptdeal", required=false, defaultValue="1,2,3,4") LinkedList<String> type, 
 			Model model) {
 		
 		int sizePerPage = 10;
+		
 		try {
 			model.addAttribute("aptdeals", service.searchAll(currentPage, sizePerPage, key, word, type));
 			model.addAttribute("navigation", service.makePageNavigation(currentPage, sizePerPage, key, word, type));
@@ -62,7 +63,7 @@ public class HouseController {
 	}
 	
 	@GetMapping("view")
-	public String view(int no, Model model) {
+	public String view(@RequestParam(value="no", required=true, defaultValue="") int no, Model model) {
 		try {
 			model.addAttribute("aptdeal", service.search(no));
 		} catch (Exception e) {

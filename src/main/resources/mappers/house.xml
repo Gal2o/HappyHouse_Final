@@ -8,11 +8,14 @@
 		select distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount,
 		d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area,
 		d.floor, d.jibun, d.type, d.rentMoney, i.img
-		from housedeal d join houseinfo i using(aptname)
-		where 1=1 and type in
-		<foreach collection="type" item="item" index="index" open ="(" separator = "," close = ")">
-			${type[index]}
-		</foreach>
+		from housedeal d join houseinfo i using(aptName)
+		where 1=1 
+		<if test = '"type != 0"'>
+			and type in
+			<foreach collection="type" item="item" index="index" open ="(" separator = "," close = ")">
+				${type[index]}
+			</foreach>
+		</if>
 		
 		<if test='key != null and key.equals("all")'>
 			and (d.aptName like concat('%',#{word},'%') or d.dong like concat('%',#{word},'%'))
@@ -23,25 +26,27 @@
 		<if test='key != null and key.equals("dong")'>
 			and d.dong like concat('%',#{word},'%')
 		</if>
-
 		order by no
 	</select>
 	
 	<select id="search" resultType="com.ssafy.happyhouse.model.dto.HouseDeal">
-		select d.no, d.dong, d.AptName, d.code, d.dealAmount,
+		select distinct(d.no), d.dong, d.AptName, d.code, d.dealAmount,
 		d.buildYear, d.dealYear, d.dealMonth, d.dealDay, d.area,
 		d.floor, d.jibun, d.type, d.rentMoney, i.img
-		from housedeal d join houseinfo i using(aptname)
+		from housedeal d join houseinfo i using(aptName)
 		where d.no = #{no};
 	</select>
 	
 	<select id="count" parameterType="hashmap" resultType="Integer">
 		select count(no)
 		from housedeal
-		where 1=1 and type in
-		<foreach collection="type" item="item" index="index" open ="(" separator = "," close = ")">
-			${type[index]}
-		</foreach>
+		where 1=1 
+		<if test = '"type != 0"'>
+			and type in
+			<foreach collection="type" item="item" index="index" open ="(" separator = "," close = ")">
+				${type[index]}
+			</foreach>
+		</if>
 		
 		<if test='key != null and key.equals("all")'>
 			and (aptName like concat('%',#{word},'%') or dong like concat('%',#{word},'%'))
