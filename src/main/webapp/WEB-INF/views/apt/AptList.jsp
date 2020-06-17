@@ -17,6 +17,10 @@
 				location.href ="${root}/Apt.do/list";
 			}
 			function searchApt() {
+				if( $(":checkbox[name='aptdeal']:checked").length == 0){
+					alert("최소 1 개 이상을 체크하세요.");
+					return;
+				}
 				document.getElementById("searchform").action = "${root}/Apt.do/list";
 				document.getElementById("searchform").submit();
 			}
@@ -36,10 +40,9 @@
 				<input type="hidden" name="pg" id="pg" value="">
 				<input type="hidden" name="key" id="key" value="${key}">
 				<input type="hidden" name="word" id="word" value="${word}">
-				<input type="hidden" name="aptdeal" id="aptdeal" value="${1}">
-				<input type="hidden" name="aptdeal" id="aptdeal" value="${2}">
-				<input type="hidden" name="aptdeal" id="aptdeal" value="${3}">
-				<input type="hidden" name="aptdeal" id="aptdeal" value="${4}">
+				<c:forEach items="${aptdeal}" var="arr">
+					<input type="hidden" name="aptdeal" id="aptdeal" value="${arr}">	
+				</c:forEach>
 			</form>
 			<div class="container" align="center">
 			<div>
@@ -48,19 +51,39 @@
 					<table class="table table-borderless"> 
 						<tr class="custom-control custom-checkbox" align="right">
 							<td>
+							<c:if test='${aptdeal.contains("1")}'> 
 								<input type="checkbox" class="custom-control-input" id="1" name="aptdeal" value="1" checked="checked"/>
+							</c:if>
+							<c:if test='${!aptdeal.contains("1")}'> 
+								<input type="checkbox" class="custom-control-input" id="1" name="aptdeal" value="1"/>
+							</c:if>
 								<label class="custom-control-label" for="1">아파트 매매</label>
 							</td>
 							<td>
+								<c:if test='${aptdeal.contains("2")}'> 
 								<input type="checkbox" class="custom-control-input" id="2" name="aptdeal" value="2" checked="checked"/>
+							</c:if>
+							<c:if test='${!aptdeal.contains("2")}'> 
+								<input type="checkbox" class="custom-control-input" id="2" name="aptdeal" value="2"/>
+							</c:if>
 				   				<label class="custom-control-label" for="2">다세대,주택 매매</label>
 							</td>
 							<td>
+							<c:if test='${aptdeal.contains("3")}'> 
 								<input type="checkbox" class="custom-control-input" id="3" name="aptdeal" value="3" checked="checked"/>
+							</c:if>
+							<c:if test='${!aptdeal.contains("3")}'> 
+								<input type="checkbox" class="custom-control-input" id="3" name="aptdeal" value="3"/>
+							</c:if>
 			   					<label class="custom-control-label" for="3">아파트 전월세</label>
 							</td>
 							<td>
+							<c:if test='${aptdeal.contains("4")}'> 
 								<input type="checkbox" class="custom-control-input" id="4" name="aptdeal" value="4" checked="checked"/>
+							</c:if>
+							<c:if test='${!aptdeal.contains("4")}'> 
+								<input type="checkbox" class="custom-control-input" id="4" name="aptdeal" value="4"/>
+							</c:if>
 			   					<label class="custom-control-label" for="4">다세대,주택 전월세</label>
 							</td>
 						</tr>
